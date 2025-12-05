@@ -12,7 +12,7 @@ def solve(ranges: list[tuple[int, int]]) -> int:
 
 def parse_input() -> list[tuple[int, int]]:
     ranges = []
-    for line in open("./2025/day5/input.txt"):
+    for line in open("./2025/day05/input.txt"):
         if line == '\n':
             break
         left, right = line.split("-")

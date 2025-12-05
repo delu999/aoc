@@ -23,7 +23,7 @@ def prepare_ranges(lines: list[str]) -> tuple[set, int]:
     return ranges, i
 
 def main():
-    lines = open("./2025/day5/input.txt").readlines()
+    lines = open("./2025/day05/input.txt").readlines()
     ranges, starting_line = prepare_ranges(lines)
     sol = solve(ranges, lines, starting_line)
     print(sol)

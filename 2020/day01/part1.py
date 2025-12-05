@@ -1,4 +1,4 @@
-f = open("2020/day1/input.txt", "r")
+f = open("2020/day01/input.txt", "r")
 
 numbers = set()
 while True:

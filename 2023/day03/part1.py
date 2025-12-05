@@ -5,14 +5,14 @@ dir = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 symbols = ['#', '$', '%', '*', '+', '-', '&', '/', '=', '@']
 matrix = []
 
-for i, line in enumerate(open("./2023/day3/input.txt", "r")):
+for i, line in enumerate(open("./2023/day03/input.txt", "r")):
     matrix.append(list(line.strip()))
 
 rows = len(matrix)
 cols = len(matrix[0])
 count = 0
 
-for i, line in enumerate(open("./2023/day3/input.txt", "r")):
+for i, line in enumerate(open("./2023/day03/input.txt", "r")):
     nums = regex_for_numbers.findall(line)
 
     for n in nums:

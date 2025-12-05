@@ -1,8 +1,5 @@
 import re
-top = [(-1, -1), (-1, 0), (-1, 1)]
-bottom = [(1, -1), (1, 0), (1, 1)]
 lateral = [(0, -1), (0, 1)]
-cross = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
 def is_valid(row, col):
     list = []
@@ -83,7 +80,7 @@ cols = 0
 
 def main():
     global rows, cols
-    for line in open("./2023/day3/input.txt", "r"):
+    for line in open("./2023/day03/input.txt", "r"):
         matrix.append(list(line.strip()))
     rows = len(matrix)
     cols = len(matrix[0])  
