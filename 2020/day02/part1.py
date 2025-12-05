@@ -1,5 +1,5 @@
 solution = 0
-for line in open("./2020/day02/input.txt"):
+for line in open("./2020/day02/input.txt", "r"):
     range, letter, password = line.split(" ")
     start, end = range.split("-")
     start, end = int(start), int(end)
