@@ -15,9 +15,8 @@ len_cards = len(cards)
 copies = [1 for _ in range(len_cards)]
 
 for i in range(0, len_cards):
-    for k in range(0, copies[i]):
-        for j in range(i + 1, i + 1 + cards[i]):
-            if j < len_cards:
-                copies[j] += 1
+    for j in range(i + 1, i + 1 + cards[i]):
+        if j < len_cards:
+            copies[j] += copies[i]
 sol = sum(copies)
 print(sol)
