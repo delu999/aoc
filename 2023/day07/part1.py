@@ -12,7 +12,7 @@ for line in open("./2023/day07/input.txt", "r"):
         cards = cards.replace('J', 'W')
     if 'T' in cards:
         cards = cards.replace('T', 'V')
-    cards = "".join(cards)
+
     cards_eval = Counter(cards)
     cards_len = len(cards_eval)
 
