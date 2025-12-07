@@ -1,3 +1,10 @@
+def fill_col(start_row, col_to_fill):
+    for k in range(start_row, rows):
+        if matrix[k][col_to_fill] == '^':
+            break
+        matrix[k][col_to_fill] = '|'
+
+
 lines = open("./2025/day07/input.txt", "r").readlines()
 matrix = [list(line.strip()) for line in lines]
 
@@ -14,19 +21,8 @@ for i in range(2, rows, 2):
             continue
         if matrix[i-1][j] == '|':
             sol += 1
-            matrix[i][j-1] = '|'
-            matrix[i][j+1] = '|'
-        elif matrix[i-2][j] == '|':
-            sol += 1
-            matrix[i-1][j] = '|'
-            matrix[i][j-1] = '|'
-            matrix[i][j+1] = '|'  
-        for k in range(i+1, rows):
-            if matrix[k][j-1] == '^':
-                break
-            matrix[k][j-1] = '|'
-        for k in range(i+1, rows):
-            if matrix[k][j+1] == '^':
-                break
-            matrix[k][j+1] = '|'           
+            matrix[i][j-1], matrix[i][j+1] = '|', '|'
+            matrix[i-1][j] = '|' if matrix[i-2][j] == '|' else '.'
+        fill_col(i+1, j-1)
+        fill_col(i+1, j+1)
 print(sol)
