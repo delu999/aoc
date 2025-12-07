@@ -4,7 +4,6 @@ def fill_col(start_row, col_to_fill):
             break
         matrix[k][col_to_fill] = '|'
 
-
 lines = open("./2025/day07/input.txt", "r").readlines()
 matrix = [list(line.strip()) for line in lines]
 
@@ -22,7 +21,7 @@ for i in range(2, rows, 2):
         if matrix[i-1][j] == '|':
             sol += 1
             matrix[i][j-1], matrix[i][j+1] = '|', '|'
-            matrix[i-1][j] = '|' if matrix[i-2][j] == '|' else '.'
+            matrix[i-1][j] = '|' if matrix[i-2][j] == '|' else matrix[i-1][j]
         fill_col(i+1, j-1)
         fill_col(i+1, j+1)
 print(sol)
