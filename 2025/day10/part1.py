@@ -1,24 +1,43 @@
 def main():
-    goal_states, presses = parse_input("./2025/day10/input.txt")
-    print(goal_states)
-    print(presses)
-    sol = solve(goal_states)
+    sol = 0
+    for line in open("./2025/day10/input.txt", "r"):
+        goal_states, presses = get_goal_and_presses(line)
+        sol += solve(goal_states, presses)
     print(sol)
 
-def parse_input(file_path: str):
+import re
+clean_regex = re.compile(r"[\[\]()]")
+
+def get_goal_and_presses(line: str):
     goal_states, presses = [], []
-    for line in open(file_path, "r"):
-        l = line.strip().split()
-        state = []
-        for c in l[0]:
-            if c != '[' and c != ']':
-                state.append(False if c == '.' else True)
-        goal_states.append(state)
-        presses.append(l[1::])
+    l = [x.strip() for x in clean_regex.split(line) if x.strip()]
+    
+    for c in l[0]:
+        goal_states.append(False if c == '.' else True)
+
+    for i in range(1, len(l) - 1):
+        default = [False for _ in range(len(goal_states))]
+        buttons = l[i].split(',')
+        for b in buttons:
+            default[int(b)] = True
+        presses.append(default)
     return goal_states, presses
 
-def solve(lines) -> int:
-    return 0
+def solve(goal_states, presses) -> int:
+    count = 1
+
+    return count
+
+def press_buttons_makes_it_equal(goal_states, presses):
+    initial_states = [False for _ in range(len(goal_states))]
+    pr = presses.split(',')
+    for i in range(len(pr)):
+        initial_states[int(pr[i])] = not initial_states[int(pr[i])] 
+    
+    for i in range(len(initial_states)):
+        if initial_states[i] != goal_states[i]:
+            return False
+    return True
 
 if __name__ == "__main__":
     main()
