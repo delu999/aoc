@@ -1,12 +1,13 @@
+import re
+import itertools as it
+clean_regex = re.compile(r"[\[\]()]")
+
 def main():
     sol = 0
     for line in open("./2025/day10/input.txt", "r"):
         goal_states, presses = get_goal_and_presses(line)
         sol += solve(goal_states, presses)
     print(sol)
-
-import re
-clean_regex = re.compile(r"[\[\]()]")
 
 def get_goal_and_presses(line: str):
     goal_states, presses = [], []
@@ -24,18 +25,20 @@ def get_goal_and_presses(line: str):
     return goal_states, presses
 
 def solve(goal_states, presses) -> int:
-    count = 1
+    count, goals = 1, len(goal_states)
+    while True:
+        for e in it.permutations(presses, count):
+            initial_states = [False] * goals
+            for el in e:
+                for i in range(goals):
+                    initial_states[i] ^= el[i]
+            if (check_equality(initial_states, goal_states)):
+                return count
+        count += 1
 
-    return count
-
-def press_buttons_makes_it_equal(goal_states, presses):
-    initial_states = [False for _ in range(len(goal_states))]
-    pr = presses.split(',')
-    for i in range(len(pr)):
-        initial_states[int(pr[i])] = not initial_states[int(pr[i])] 
-    
-    for i in range(len(initial_states)):
-        if initial_states[i] != goal_states[i]:
+def check_equality(states1, states2):
+    for i in range(len(states1)):
+        if states1[i] != states2[i]:
             return False
     return True
 
